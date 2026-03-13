@@ -1,8 +1,17 @@
 import React from 'react'
+import "./ItemList.css"
+import Item from "../Item/Item.jsx"
 
-function ItemList() {
+function ItemList({products}) {
   return (
-    <div>ItemList</div>
+    <div className="item-grid">
+      {products.map((product)=>(
+        <Item  
+          product={product}
+          key={product.id}
+        />
+      ))}
+    </div>
   )
 }
 
