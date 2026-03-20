@@ -1,7 +1,8 @@
 import React from 'react'
 import "./Item.css"
+import { Link } from 'react-router-dom'
 
-function Item({ product, onSelect }) {
+function Item({ product}) {
   const inStock = product.stock > 0
 
   return (
@@ -14,13 +15,12 @@ function Item({ product, onSelect }) {
         <h3>{product.name}</h3>
         <p className='item-card__price'>{product.price}</p>
         <p className={`item-card__stock ${inStock ? "" : "is-empty"}`}>{inStock ? `Stock: ${product.stock}` : "Sin stock"}</p>
-        <button
-          type="button"
+        <Link
           className='item-card__cta'
-          onClick={() => onSelect && onSelect(product.id)}
+          to={`/detail/${product.id}`}
         >
           Ver detalle
-        </button>
+        </Link>
       </div>
     </article>
   )

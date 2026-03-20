@@ -1,42 +1,43 @@
 import CardWidget from "../CardWidget/CardWidget";
 import "./NavBar.css"
 
-function NavBar({ cartCount, title, onBrandClick, onSelectCategory }) {
+import {NavLink, Link} from 'react-router-dom'
+
+function NavBar({ cartCount, title }) {
   return (
     <header className="nav">
       <div className="nav__inner">
-        <button
-          type="button"
-          className="nav__brand"
-          onClick={() => onBrandClick && onBrandClick()}
-        >
+        <NavLink className="nav__brand" to="/">
           {title}
-        </button>
+        </NavLink>
         <nav className="nav__links">
-          <button
-            type="button"
-            className="nav__link"
-            onClick={() => onSelectCategory && onSelectCategory("celular")}
+          <NavLink
+            className={({ isActive}) =>
+              isActive ? "nav__link nav__link--active" : "nav__link"
+            }
+            to="/category/celular"
           >
             Phones
-          </button>
-          <button
-            type="button"
-            className="nav__link"
-            onClick={() => onSelectCategory && onSelectCategory("tablet")}
+          </NavLink>
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? "nav__link nav__link--active" : "nav__link"
+            }
+            to="/category/tablet"
           >
             Tablets
-          </button>
-          <button
-            type="button"
-            className="nav__link"
-            onClick={() => onSelectCategory && onSelectCategory("computer")}
+          </NavLink>
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? "nav__link nav__link--active" : "nav__link"
+            }
+            to="/category/computer"
           >
             Notebooks
-          </button>
+          </NavLink>
         </nav>
         <div className="nav__actions">
-          <CardWidget cartCount={cartCount}/>
+          <CardWidget cartCount={cartCount} />
         </div>
       </div>
     </header>
